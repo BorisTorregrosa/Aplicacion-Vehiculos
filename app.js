@@ -1,7 +1,7 @@
 console.log("APP FUNCIONANDO");
 
 // conexión websocket
-const socket = new WebSocket("https://aplicacion-vehiculos.onrender.com");
+const socket = new WebSocket("wss://aplicacion-vehiculos.onrender.com");
 
 // =====================
 // MODOS
@@ -75,10 +75,47 @@ function actualizarPaintFocus(){
 
 }
 
+// =====================
+// HUD DE MODO
+// =====================
+const hudModo = document.createElement("div");
+hudModo.id = "hud-modo";
+hudModo.style.cssText = `
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10,10,12,0.92);
+    border: 1px solid rgba(230,57,70,0.4);
+    border-radius: 2px;
+    padding: 8px 24px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: #E63946;
+    z-index: 100;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 20px rgba(230,57,70,0.2);
+    transition: all 0.3s;
+`;
+document.body.appendChild(hudModo);
+
+function actualizarHUD() {
+    const modos = {
+        "navegacion": "◀ ▶  SELECCIONAR PANEL",
+        "modelo":     "JOYSTICK — ROTAR  |  AC/AJ — ZOOM  |  Y — VOLVER",
+        "categorias": "▲ ▼  CATEGORIA  |  A — SELECCIONAR  |  Y — VOLVER",
+        "paint":      "◀ ▶  COLOR  |  A — APLICAR  |  Y — VOLVER",
+    };
+    hudModo.textContent = modos[modo] || modo.toUpperCase();
+}
+
+
+
 socket.onopen = () => {
-
     console.log("CONECTADO");
-
+    actualizarHUD();
 };
 
 socket.onmessage = (event) => {
@@ -127,6 +164,7 @@ socket.onmessage = (event) => {
                 }
 
                 console.log("Modo:", modo);
+                actualizarHUD();
 
             }
 
@@ -161,8 +199,9 @@ socket.onmessage = (event) => {
 
             modo = "navegacion";
             submodoPaint = "swatches";
-
             console.log("Volviendo");
+            actualizarHUD();
+            actualizarPanelFocus();
 
         }
 
