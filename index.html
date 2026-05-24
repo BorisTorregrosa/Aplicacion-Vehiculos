@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>CUL — BorisT</title>
+</head>
+<body>
+
+    <div class="hud-top">
+        <div class="brand">CUL <span>BORIS T</span></div>
+        <div class="label-tag"> BORIST PERSONALIZACION</div>
+    </div>
+
+    <div class="cuadro-model">
+        <model-viewer 
+        id="car"
+        src="kimera_evo_37__www.vecarz.com/scene.gltf"
+        camera-controls 
+        camera-orbit="0deg 75deg 8m"
+        interaction-prompt="none"
+    ></model-viewer>
+    </div>
+
+    <div class="categorias-vehiculos">
+        <div class="categoria-label">CATEGORIAS</div>
+        <button class="categoria-btn" data-model="kimera_evo_37__www.vecarz.com/scene.gltf">SPORT</button>
+        <button class="categoria-btn" data-model="motocarro/base_basic_pbr.glb">MOTOCAR</button>
+        <button class="categoria-btn" data-model="2017_lamborghini_centenario/scene.gltf">CENTENARIO</button>
+        <button class="categoria-btn" data-model="bmw_z8/scene.gltf">BMW Z8</button>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <span class="panel-title">PAINT</span>
+            <span class="panel-subtitle">BODY PANELS</span>
+        </div>
+
+        <div class="swatches" id="swatches"></div>
+
+
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.2.0/model-viewer.min.js"></script>
+    <script src="main.js">
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --accent: #E63946;
+    --accent-glow: rgba(230, 57, 70, 0.35);
+    --gold: #C9A84C;
+    --gold-glow: rgba(201, 168, 76, 0.3);
+    --bg: #080808;
+    --surface: rgba(10, 10, 12, 0.95);
+    --surface2: rgba(18, 18, 22, 0.9);
+    --border: rgba(255,255,255,0.06);
+    --border-hot: rgba(230, 57, 70, 0.5);
+    --text: #e8e8e8;
+    --muted: #555;
+    --font-display: 'Rajdhani', sans-serif;
+    --font-title: 'Bebas Neue', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: url("imagenes/fondo garaje.png") no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text);
+    font-family: var(--font-display);
+    overflow: hidden;
+}
+
+/* Overlay oscuro sobre el fondo */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Viewer ── */
+.cuadro-model {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 62%;
+    height: 72vh;
+    display: block;
+    z-index: 1;
+}
+
+model-viewer {
+    width: 100%;
+    height: 88vh;
+    display: block;
+    border: 1px solid transparent;
+}
+
+/* ── Top HUD ── */
+.hud-top {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    z-index: 10;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+}
+
+.brand {
+    font-family: var(--font-title);
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 0.25em;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+
+.brand span {
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--gold-glow);
+}
+
+.label-tag {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.35em;
+    color:#555;
+    text-transform: uppercase;
+}
+
+/* ── Categorías ── */
+.categorias-vehiculos {
+    position: fixed;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    width: 210px;
+    top: 88px; left: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 18px 14px;
+    z-index: 10;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: box-shadow 0.25s;
+}
+
+.categoria-label {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    letter-spacing: 0.4em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    padding-left: 2px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.categoria-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    color: rgba(255,255,255,0.55);
+    font-family: var(--font-title);
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    padding: 9px 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: left;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.categoria-btn::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 0; height: 60%;
+    background: var(--accent);
+    transition: width 0.2s;
+    border-radius: 0 2px 2px 0;
+}
+
+.categoria-btn:hover {
+    color: #fff;
+    background: rgba(230, 57, 70, 0.07);
+    border-color: rgba(230, 57, 70, 0.2);
+    padding-left: 18px;
+}
+
+.categoria-btn:hover::after {
+    width: 2px;
+}
+
+.categoria-btn.active {
+    color: #fff;
+    background: rgba(230, 57, 70, 0.1);
+    border-color: rgba(230, 57, 70, 0.3);
+    padding-left: 18px;
+}
+
+.categoria-btn.active::after {
+    width: 2px;
+}
+
+/* ── Panel principal ── */
+.panel {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 268px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 22px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    z-index: 10;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04);
+    transition: box-shadow 0.25s;
+}
+
+/* Línea izquierda degradada */
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: linear-gradient(to bottom, var(--accent) 0%, transparent 80%);
+    border-radius: 2px 0 0 2px;
+}
+
+/* Esquina decorativa */
+.panel::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40px; height: 40px;
+    background: linear-gradient(225deg, rgba(230,57,70,0.12) 0%, transparent 60%);
+    border-radius: 0 2px 0 0;
+}
+
+.panel-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.panel-title {
+    font-family: var(--font-title);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: #fff;
+}
+
+.panel-subtitle {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+}
+
+/* ── Swatches ── */
+.swatches {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.swatch {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+}
+
+.swatch-inner {
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--swatch-color);
+    border: 2px solid rgba(255,255,255,0.08);
+    transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), border-color 0.2s, box-shadow 0.2s;
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,0.2),
+        inset 0 -2px 4px rgba(0,0,0,0.3),
+        0 2px 10px rgba(0,0,0,0.5);
+}
+
+.swatch:hover .swatch-inner {
+    transform: scale(1.15) translateY(-2px);
+    border-color: rgba(255,255,255,0.25);
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,0.25),
+        0 6px 20px rgba(0,0,0,0.5);
+}
+
+.swatch.active .swatch-inner {
+    border-color: var(--accent);
+    transform: scale(1.15) translateY(-2px);
+    box-shadow:
+        0 0 0 3px var(--accent-glow),
+        inset 0 2px 4px rgba(255,255,255,0.2),
+        0 6px 20px rgba(0,0,0,0.5);
+}
+
+.swatch-name {
+    font-family: var(--font-mono);
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-align: center;
+    transition: color 0.2s;
+}
+
+.swatch:hover .swatch-name {
+    color: rgba(255,255,255,0.5);
+}
+
+.swatch.active .swatch-name {
+    color: var(--accent);
+}
+
+/* ── Focus states (joystick) ── */
+.focusPanel {
+    outline: none;
+    border-color: var(--accent) !important;
+    box-shadow:
+        0 0 0 1px var(--accent),
+        0 0 15px var(--accent-glow),
+        0 0 40px var(--accent-glow),
+        inset 0 0 20px rgba(230, 57, 70, 0.05);
+    transition: box-shadow 0.25s, border-color 0.25s;
+}
+
+
+.focusSwatch .swatch-inner,
+.focusSwatch {
+    transform: scale(1.18) translateY(-2px) !important;
+    box-shadow:
+        0 0 0 2px var(--accent),
+        0 0 16px var(--accent-glow),
+        0 0 30px rgba(255,45,85,0.3) !important;
+    transition: all 0.2s;
+}
+
+.focusCategoria {
+    outline: none;
+    color: #fff !important;
+    background: rgba(230, 57, 70, 0.12) !important;
+    border-color: rgba(230, 57, 70, 0.4) !important;
+    box-shadow: 0 0 16px var(--accent-glow);
+    transition: all 0.25s;
+    transform: translateX(4px);
+}
+
+.focusPaint {
+    outline: none;
+    border-radius: 2px;
+    box-shadow:
+        0 0 0 1px var(--accent),
+        0 0 16px var(--accent-glow);
+    transition: box-shadow 0.25s;
+}
+
+/* ── Input color ── */
+input[type="color"] {
+    width: 28px; height: 28px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    flex-shrink: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch {
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+}
+
+#hexDisplay {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    flex: 1;
+}
+
+/* ── Finish ── */
+.finish-row { margin-bottom: 16px; }
+
+.finish-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.finish-options { display: flex; gap: 5px; }
+
+.finish-btn {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    padding: 7px 2px;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.15s;
+    text-transform: uppercase;
+}
+
+.finish-btn:hover {
+    border-color: rgba(255,255,255,0.18);
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+.finish-btn.active {
+    background: rgba(230, 57, 70, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── Readout ── */
+.color-readout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.readout-key {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+}
+
+.readout-val {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 12px var(--gold-glow);
+}

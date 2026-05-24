@@ -1,0 +1,11 @@
+Model Information:
+* title:	Kimera EVO 37 | www.vecarz.com
+* source:	https://sketchfab.com/3d-models/kimera-evo-37-wwwvecarzcom-5dbe8b2f7bb343e2b60169ce7e32da7c
+* author:	vecarz (https://sketchfab.com/heynic)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Kimera EVO 37 | www.vecarz.com" (https://sketchfab.com/3d-models/kimera-evo-37-wwwvecarzcom-5dbe8b2f7bb343e2b60169ce7e32da7c) by vecarz (https://sketchfab.com/heynic) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

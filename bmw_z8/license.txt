@@ -1,0 +1,11 @@
+Model Information:
+* title:	BMW Z8 | www.vecarz.com
+* source:	https://sketchfab.com/3d-models/bmw-z8-wwwvecarzcom-231188dc23b4409d85391bd229c7787f
+* author:	vecarz (https://sketchfab.com/heynic)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "BMW Z8 | www.vecarz.com" (https://sketchfab.com/3d-models/bmw-z8-wwwvecarzcom-231188dc23b4409d85391bd229c7787f) by vecarz (https://sketchfab.com/heynic) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
