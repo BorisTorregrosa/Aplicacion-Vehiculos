@@ -10,17 +10,9 @@ server.on('connection', (socket) => {
 
     socket.on('message', (msg) => {
         server.clients.forEach((client) => {
-            if(client.readyState === WebSocket.OPEN){
+            if (client.readyState === WebSocket.OPEN) {
                 client.send(msg.toString());
             }
         });
     });
-});
-
-            }
-
-        });
-
-    });
-
 });
