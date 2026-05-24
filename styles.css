@@ -434,10 +434,36 @@ input[type="color"]::-webkit-color-swatch {
     color: var(--muted);
 }
 
-.readout-val {
+/* ── Modo activo cuadro-model ── */
+.cuadro-model.focusPanel {
+    border: 2px solid var(--accent) !important;
+    box-shadow:
+        0 0 0 1px var(--accent),
+        0 0 30px var(--accent-glow),
+        0 0 60px var(--accent-glow),
+        inset 0 0 30px rgba(230, 57, 70, 0.05);
+}
+
+/* ── HUD modo indicador ── */
+#hud-modo {
+    pointer-events: none;
+}
+
+/* ── Indicador de modo en esquina superior derecha ── */
+.modo-badge {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(230, 57, 70, 0.15);
+    border: 1px solid var(--accent);
+    padding: 4px 16px;
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 12px var(--gold-glow);
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    text-transform: uppercase;
+    z-index: 20;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
 }
