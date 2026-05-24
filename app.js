@@ -1,7 +1,7 @@
 console.log("APP FUNCIONANDO");
 
 // conexión websocket
-const socket = new WebSocket("ws://192.168.1.14:3000");
+const socket = new WebSocket("https://aplicacion-vehiculos.onrender.com");
 
 // =====================
 // MODOS
